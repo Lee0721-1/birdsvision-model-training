@@ -1,0 +1,11 @@
+{
+  "format": "birdsvision-dual-view-sweep-v1",
+  "trainable": "head",
+  "epochs": 3,
+  "learning_rates": [0.00003, 0.0001, 0.0003],
+  "weight_decays": [0.01, 0.05],
+  "seeds": [20260907, 20260908],
+  "train_per_class": 2,
+  "validation_per_class": 2,
+  "subset_seed": 20260907
+}
