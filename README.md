@@ -35,6 +35,23 @@ python dual_view_classifier_finetune.py --config /path/to/private_finetune_confi
 
 普通训练入口在参数解析和数据合同两层拒绝 `final_test`。参数扫描会记录各次运行的峰值 RSS、阶段峰值内存、运行时间、准确率、NLL、ECE、Brier 分数以及分组比较结果；合成扫描不会宣称产生最佳正式参数。
 
+## SOYOL 单类鸟体定位
+
+`soyol_train.py` 和 `soyol_validate.py` 是 A 层 SOYOL Detect 的训练与 NMS 分支 validation 入口，要求使用仓库外自行取得许可的 `data_contract.json`、`export_manifest.jsonl`、`soyol_detect.yaml`、图片和逐实例人工最终框。`soyol_dataset.py` 在训练前校验文件摘要、分段、重复组、图片内容及标签；它会读取私有数据合同里的来源路径，但不会把路径或图片提交到本仓库。训练运行目录、权重和原图必须放在仓库外或被 `.gitignore` 排除的目录。训练脚本要求 CUDA，实际运行参数须由使用者按自有数据与设备确定。
+
+```bash
+python soyol_train.py --dataset /private/soyol-data --base /private/yolo26n.pt \
+  --project /private/runs --name example-run --epochs 20 --imgsz 640 --batch 8
+python soyol_validate.py --dataset /private/soyol-data \
+  --best /private/runs/example-run/weights/best.pt \
+  --last /private/runs/example-run/weights/last.pt \
+  --output /private/reports/soyol-validation.json
+```
+
+训练入口只接受与脚本记录的 Ultralytics 官方 YOLO26n Detect 基础权重摘要一致的文件；不使用内部 TYLO Pose 权重。推理与 validation 显式选择 one-to-many 分支，经 NMS 后最多返回 10 框；真实人工标签不能因这个上限而删减。本仓库目前未提供 A 层数据的可公开派生清单、归属署名、模型权重或 `final_test` 验收材料，因此这组源码不表示 SOYOL 权重已可公开。
+
+[SOYOL 模型卡准备记录](SOYOL_MODEL_CARD.md)列出当前训练事实和未完成事项。`soyol_attribution.py --selection /private/selection.jsonl --output /private/attribution.csv` 可在仓库外生成逐图署名表供人工复核；不要把未经复核的表直接发布。
+
 ## 许可证
 
 源代码使用 [GNU Affero General Public License v3.0 only](LICENSE)。中文说明见 [LICENSE.zh-CN.md](LICENSE.zh-CN.md)。数据和模型权重不属于本仓库发布内容，也不因源代码许可证自动获得授权。
