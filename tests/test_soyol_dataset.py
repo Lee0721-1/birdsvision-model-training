@@ -36,10 +36,13 @@ def test_verifier_rejects_changed_label(tmp_path):
     row = {
         "record_id": "synthetic-record", "split": split,
         "soyol_group_id": "synthetic-group", "source_scope": "synthetic-reviewed",
+        "source_page_url": "https://example.org/photo/1",
+        "source_split_for_audit_only": "train", "license_code": "cc0",
+        "attribution": "Example Photographer",
         "source_image_path": str(source), "source_image_sha256": digest(source),
         "copied_image_path": "image.jpg", "copied_image_sha256": digest(copied),
         "label_path": "label.txt", "label_sha256": digest(label),
-        "instances": [box],
+        "instances": [box | {"provenance": "human_manual_box"}],
     }
     manifest = data / "export_manifest.jsonl"
     manifest.write_text(json.dumps(row) + "\n", encoding="utf-8")

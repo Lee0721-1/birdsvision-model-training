@@ -9,9 +9,12 @@ import json
 import math
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlsplit
 
 
 SPLIT_SEED = "soyol-a-detect-train-validation-20260923-v1"
+ALLOWED_LICENSES = {"cc-by", "cc0", "cc0-1.0"}
+HUMAN_FINAL_PROVENANCE = {"human_approved_teacher_box", "human_manual_box"}
 
 
 def digest(path: Path) -> str:
@@ -62,6 +65,11 @@ def verify(directory: Path) -> dict:
     for line in manifest.read_text(encoding="utf-8").splitlines():
         row = json.loads(line)
         record_id, split, group = row["record_id"], row["split"], row["soyol_group_id"]
+        page = urlsplit(row["source_page_url"])
+        if (row["license_code"] not in ALLOWED_LICENSES or not row["attribution"]
+                or page.scheme != "https" or not page.hostname
+                or row["source_split_for_audit_only"] not in {"train", "validation"}):
+            raise ValueError("A-tier rights or source evidence missing")
         if record_id in seen or split != split_for(group):
             raise ValueError("record or split mismatch")
         seen.add(record_id)
@@ -81,6 +89,8 @@ def verify(directory: Path) -> dict:
                 or row["source_image_sha256"] != row["copied_image_sha256"]):
             raise ValueError("image mismatch")
         instances = row["instances"]
+        if any(instance["provenance"] not in HUMAN_FINAL_PROVENANCE for instance in instances):
+            raise ValueError("box is not human-confirmed")
         if not instances and row["source_scope"] != "full_v1_explicit_human_no_bird":
             raise ValueError("empty label lacks explicit human no-bird review")
         expected = render_label(instances)
