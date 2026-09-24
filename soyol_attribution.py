@@ -12,7 +12,8 @@ from urllib.parse import urlsplit
 
 
 ALLOWED_LICENSES = {"cc-by", "cc0", "cc0-1.0"}
-FIELDS = ("record_id", "source_page_url", "attribution", "license_code", "changes")
+FIELDS = ("record_id", "source_dataset", "source_page_url", "attribution",
+          "license_code", "changes", "publication_review")
 CHANGES = "Bird detection annotation; resized, cropped, and augmented for model training"
 
 
@@ -24,6 +25,7 @@ def export(selection: Path, output: Path) -> int:
     for line in selection.read_text(encoding="utf-8").splitlines():
         row = json.loads(line)
         record_id = row["record_id"]
+        source_dataset = row["source_dataset"]
         source_url = row["source_page_url"]
         attribution = row["attribution"]
         license_code = row["license_code"]
@@ -34,10 +36,16 @@ def export(selection: Path, output: Path) -> int:
         seen.add(record_id)
         rows.append({
             "record_id": record_id,
+            "source_dataset": source_dataset,
             "source_page_url": source_url,
             "attribution": attribution,
             "license_code": license_code,
             "changes": CHANGES,
+            "publication_review": (
+                "platform_terms_review_required" if source_dataset == "inaturalist" else
+                "underlying_photo_rights_review_required" if source_dataset == "huggingface_bird_species_dataset" else
+                "source_review_required"
+            ),
         })
     if not rows:
         raise ValueError("selection is empty")
