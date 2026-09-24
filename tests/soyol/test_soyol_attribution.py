@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from soyol_attribution import export
+from soyol.soyol_attribution import export
 
 
 def test_attribution_export_keeps_a_tier_and_rejects_b_tier(tmp_path):

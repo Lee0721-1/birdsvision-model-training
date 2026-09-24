@@ -125,7 +125,7 @@ def configure_trainable(model, mode):
 
 def evaluate(model, loader, prediction_path):
     import torch
-    import dual_view_classifier_train as train
+    from convnext import dual_view_classifier_train as train
     total = correct = top3 = 0
     nll = brier = confidence_sum = correct_confidence = wrong_confidence = 0.0
     bins = [[0, 0.0, 0] for _ in range(15)]
@@ -318,8 +318,8 @@ def monitored(command, directory, args):
 
 def prepare(args, plan):
     import torch
-    import dual_view_training_data as data
-    import dual_view_classifier_train as train
+    from convnext import dual_view_training_data as data
+    from convnext import dual_view_classifier_train as train
     torch.set_num_threads(args.threads)
     if args.synthetic_smoke:
         root = args.output_dir / "synthetic-data"
@@ -377,7 +377,7 @@ def worker(args, plan):
     if not args.allow_training and not args.synthetic_smoke:
         raise ValueError("real experiments require --allow-training")
     import torch
-    import dual_view_classifier_train as train
+    from convnext import dual_view_classifier_train as train
     trial = next(t for t in trials(plan) if t["trial_id"] == args.trial_id)
     train.seed_everything(trial["seed"])
     model = train.StableCUBModel(num_classes=len(bundle.classes), use_pretrained=False)
@@ -526,7 +526,7 @@ def main(argv=None):
         with lock.open("x", encoding="utf-8") as stream:
             stream.write(str(os.getpid()))
         try:
-            command = [sys.executable, str(Path(__file__).resolve()), *argv]
+            command = [sys.executable, "-m", "convnext.dual_view_parameter_sweep", *argv]
             report = monitored([*command, "--internal-stage", "prepare"], args.output_dir, args)
             if report["exit_code"] or report["stop_reason"]:
                 return 1

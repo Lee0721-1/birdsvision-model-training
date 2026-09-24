@@ -5,9 +5,9 @@ from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import dual_view_fusion_experiment as experiment
-import dual_view_classifier_finetune as fine_tune
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from convnext import dual_view_fusion_experiment as experiment
+from convnext import dual_view_classifier_finetune as fine_tune
 
 
 def test_invocation_binds_exact_entrypoint_and_active_config(tmp_path):
@@ -49,12 +49,12 @@ def test_launcher_injects_invocation_into_runtime_contract_and_restores_hook(
 
 
 def test_second_seed_config_changes_only_seed_and_output_directory():
-    root = Path(__file__).resolve().parents[1]
+    root = Path(__file__).resolve().parents[2]
     first = vars(fine_tune.load_training_config(
-        root / "config_dual_view_fusion_v2.py"
+        root / "convnext" / "config_dual_view_fusion_v2.py"
     ))
     second = vars(fine_tune.load_training_config(
-        root / "config_dual_view_fusion_v2_seed_20260909.py"
+        root / "convnext" / "config_dual_view_fusion_v2_seed_20260909.py"
     ))
     ignored = {"config", "seed", "output_dir"}
     assert {key: value for key, value in first.items() if key not in ignored} == {
@@ -66,12 +66,12 @@ def test_second_seed_config_changes_only_seed_and_output_directory():
 
 
 def test_aux_010_config_changes_only_auxiliary_weights_and_output_directory():
-    root = Path(__file__).resolve().parents[1]
+    root = Path(__file__).resolve().parents[2]
     baseline = vars(fine_tune.load_training_config(
-        root / "config_dual_view_fusion_v2.py"
+        root / "convnext" / "config_dual_view_fusion_v2.py"
     ))
     experiment_config = vars(fine_tune.load_training_config(
-        root / "config_dual_view_fusion_v2_aux_010.py"
+        root / "convnext" / "config_dual_view_fusion_v2_aux_010.py"
     ))
     ignored = {
         "config", "output_dir", "full_aux_loss_weight", "crop_aux_loss_weight",

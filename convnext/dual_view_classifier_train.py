@@ -30,13 +30,13 @@ import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from training_runtime import (
+from convnext.training_runtime import (
     CHECKPOINT_FORMAT as LEGACY_FORMAT,
     CLASSIFIER_BIAS_KEY, CLASSIFIER_WEIGHT_KEY, StableCUBModel, StopRequest,
     atomic_json_save, atomic_torch_save, load_torch_file, make_transforms,
     seed_everything,
 )
-from dual_view_training_data import (
+from convnext.dual_view_training_data import (
     CROP_RULE, ZERO_RULE, DualViewDataset, ViewBudgetBatchSampler,
     canonical, collate_views, digest, load_bundle, relative_file,
     synthetic_bundle, verified_bytes,

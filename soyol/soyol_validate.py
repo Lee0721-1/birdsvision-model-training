@@ -10,8 +10,8 @@ from pathlib import Path
 
 from ultralytics import YOLO
 
-from soyol_dataset import verify
-from soyol_output_policy import with_soyol_max_det
+from soyol.soyol_dataset import verify
+from soyol.soyol_output_policy import with_soyol_max_det
 
 
 def run(dataset, weights, output):

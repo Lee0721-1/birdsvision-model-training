@@ -8,8 +8,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-import dual_view_classifier_finetune as train
-from dual_view_training_data import digest
+from convnext import dual_view_classifier_finetune as train
+from convnext.dual_view_training_data import digest
 
 
 def invocation_identity(config_path):

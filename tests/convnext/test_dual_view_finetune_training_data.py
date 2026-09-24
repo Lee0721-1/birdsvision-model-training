@@ -8,9 +8,9 @@ import pytest
 import torch
 from torchvision import transforms
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import dual_view_finetune_training_data as fine_data
-import dual_view_training_data as base_data
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from convnext import dual_view_finetune_training_data as fine_data
+from convnext import dual_view_training_data as base_data
 
 
 def to_tensor(_image):

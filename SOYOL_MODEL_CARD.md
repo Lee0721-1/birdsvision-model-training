@@ -1,6 +1,6 @@
 # SOYOL v1 model card — preparation record
 
-**Publication status:** Source preparation only. No SOYOL weights, images, labels, or final-test result are included in this private repository.
+**Publication status:** Source preparation only. No SOYOL weights, images, labels, or final-test result are included in this repository.
 
 ## Model and intended output
 
@@ -17,7 +17,7 @@ These numbers come from the internal training and validation records. The indepe
 
 ## Attribution and publication boundary
 
-The internal A-tier selection contains 1,093 CC BY records, 228 CC0 records, and 174 CC0-1.0 records. Each currently has a source page and attribution field. `soyol_attribution.py` prepares a per-record attribution table for review without exporting images. Source page, author attribution, image-level license, and change notices must be checked before publication. The license on this repository's source code does not relicense the training images.
+The internal A-tier selection contains 1,093 CC BY records, 228 CC0 records, and 174 CC0-1.0 records. Each currently has a source page and attribution field. `soyol/soyol_attribution.py` prepares a per-record attribution table for review without exporting images. Source page, author attribution, image-level license, and change notices must be checked before publication. The license on this repository's source code does not relicense the training images.
 
 Of these A-tier records, 1,321 were obtained from iNaturalist and 174 from a Hugging Face bird-species dataset. iNaturalist's current platform terms prohibit use of its data to train AI/ML for commercial purposes. The image-level CC BY or CC0 code does not by itself resolve the platform-terms question for a model whose downstream commercial use is intended. This must be resolved through a documented platform permission or independently verified source route before an unrestricted AGPL model-weight release is claimed.
 

@@ -9,8 +9,8 @@ import pytest
 import torch
 from torchvision import transforms
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import dual_view_training_data as data
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from convnext import dual_view_training_data as data
 
 
 @pytest.fixture

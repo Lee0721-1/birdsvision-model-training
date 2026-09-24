@@ -13,8 +13,8 @@ import torch
 import ultralytics
 from ultralytics import YOLO
 
-from soyol_dataset import digest, verify
-from soyol_output_policy import with_soyol_max_det
+from soyol.soyol_dataset import digest, verify
+from soyol.soyol_output_policy import with_soyol_max_det
 
 
 OFFICIAL_SHA256 = "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"

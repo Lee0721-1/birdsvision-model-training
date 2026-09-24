@@ -6,8 +6,8 @@ import json
 
 import pytest
 
-from soyol_dataset import digest, render_label, split_for, verify
-from soyol_output_policy import with_soyol_max_det
+from soyol.soyol_dataset import digest, render_label, split_for, verify
+from soyol.soyol_output_policy import with_soyol_max_det
 
 
 def test_output_limit_does_not_restrict_ground_truth():

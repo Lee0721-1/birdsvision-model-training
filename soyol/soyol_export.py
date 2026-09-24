@@ -13,7 +13,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from soyol_dataset import (ALLOWED_LICENSES, HUMAN_FINAL_PROVENANCE, SPLIT_SEED,
+from soyol.soyol_dataset import (ALLOWED_LICENSES, HUMAN_FINAL_PROVENANCE, SPLIT_SEED,
                            digest, render_label, split_for, verify)
 
 

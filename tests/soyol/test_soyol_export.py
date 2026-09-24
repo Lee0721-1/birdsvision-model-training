@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-from soyol_dataset import digest, render_label, split_for, verify
-from soyol_export import export
+from soyol.soyol_dataset import digest, render_label, split_for, verify
+from soyol.soyol_export import export
 
 
 def test_export_requires_reviewed_a_tier_and_separate_splits(tmp_path):

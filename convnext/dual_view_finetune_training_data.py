@@ -13,7 +13,7 @@ import torch
 from PIL import Image
 from torch.utils.data import Dataset
 
-from dual_view_training_data import (
+from convnext.dual_view_training_data import (
     canonical,
     digest,
     relative_file,

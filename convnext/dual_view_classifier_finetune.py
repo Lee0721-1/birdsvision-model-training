@@ -40,7 +40,7 @@ import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from training_runtime import (
+from convnext.training_runtime import (
     StableCUBModel,
     StopRequest,
     atomic_json_save,
@@ -49,13 +49,13 @@ from training_runtime import (
     make_transforms,
     seed_everything,
 )
-from dual_view_classifier_train import (
+from convnext.dual_view_classifier_train import (
     CHECKPOINT_FORMAT as BASE_CHECKPOINT_FORMAT,
     ParentMetrics,
     fuse_logits,
 )
-from dual_view_finetune_training_data import FineTuneDualViewDataset
-from dual_view_training_data import (
+from convnext.dual_view_finetune_training_data import FineTuneDualViewDataset
+from convnext.dual_view_training_data import (
     CROP_RULE,
     ZERO_RULE,
     ViewBudgetBatchSampler,

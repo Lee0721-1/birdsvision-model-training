@@ -10,9 +10,9 @@ from types import SimpleNamespace
 import pytest
 import torch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import dual_view_parameter_sweep as sweep
-import dual_view_training_data as data
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from convnext import dual_view_parameter_sweep as sweep
+from convnext import dual_view_training_data as data
 
 
 @pytest.mark.parametrize("key,value", [
@@ -250,8 +250,8 @@ def test_preflight_subprocess_failure_stops_before_trials(tmp_path, monkeypatch)
 
 
 def test_supervisor_import_does_not_load_torch():
-    code = "import sys; import dual_view_parameter_sweep; assert 'torch' not in sys.modules"
-    subprocess.run([sys.executable, "-c", code], cwd=Path(sweep.__file__).parent, check=True)
+    code = "import sys; import convnext.dual_view_parameter_sweep; assert 'torch' not in sys.modules"
+    subprocess.run([sys.executable, "-c", code], cwd=Path(sweep.__file__).resolve().parent.parent, check=True)
 
 
 def test_collect_records_failed_attempt_and_refuses_tampered_checkpoint(tmp_path):
