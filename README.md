@@ -37,6 +37,8 @@ python dual_view_classifier_finetune.py --config /path/to/private_finetune_confi
 
 ## SOYOL 单类鸟体定位
 
+SOYOL 取自 Student YOLO；内部教师模型 Teacher YOLO 简写为 TYLO。TYLO 是闭源内部模型，主要用于比对学生模型的效果。
+
 `soyol_export.py` 接收仓库外的已审计 A 层选择清单及其绑定报告，拒绝 B/C、未人工确认的框和封存 `final_test`，导出 Detect train/validation 文件。`soyol_train.py` 和 `soyol_validate.py` 是训练与 NMS 分支 validation 入口。`soyol_dataset.py` 在训练前校验文件摘要、分段、重复组、图片内容及标签；它会读取私有数据合同里的来源路径，但不会把路径或图片提交到本仓库。训练运行目录、权重和原图必须放在仓库外或被 `.gitignore` 排除的目录。训练脚本要求 CUDA，实际运行参数须由使用者按自有数据与设备确定。
 
 ```bash
