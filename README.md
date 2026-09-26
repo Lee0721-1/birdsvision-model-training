@@ -62,7 +62,7 @@ python -m soyol.soyol_validate --dataset /private/soyol-data \
   --output /private/reports/soyol-validation.json
 ```
 
-训练入口只接受与脚本记录的 Ultralytics 官方 YOLO26n Detect 基础权重摘要一致的文件；不使用内部 TYLO Pose 权重。推理与 validation 显式选择 one-to-many 分支，经 NMS 后最多返回 10 框；真实人工标签不能因这个上限而删减。本仓库目前未提供 A 层数据的可公开派生清单、归属署名、模型权重或 `final_test` 验收材料，因此这组源码不表示 SOYOL 权重已可公开。
+训练入口只接受与脚本记录的 Ultralytics 官方 YOLO26n Detect 基础权重摘要一致的文件；不使用内部 TYLO Pose 权重。推理与 validation 显式选择 one-to-many 分支，经 NMS 后最多返回 10 框；真实人工标签不能因这个上限而删减。`soyol/ATTRIBUTION_A_DOCUMENTED_20260926.csv` 是拟公开新权重所用 1,316 张照片的逐图署名与许可审阅表，包含改动说明；许可链接依据 iNaturalist 当前站点映射，平台条款仍待答复。仓库不提供训练原图、裁剪图、私有选择清单、模型权重或独立 `final_test` 结果，因此源码和署名表本身不表示权重已可公开。
 
 [SOYOL 模型卡准备记录](SOYOL_MODEL_CARD.md)列出当前训练事实和未完成事项。`python -m soyol.soyol_attribution --selection /private/selection.jsonl --output /private/attribution.csv` 可在仓库外生成逐图署名表供人工复核；不要把未经复核的表直接发布。
 
