@@ -171,6 +171,10 @@ def verify_bundle(directory: Path) -> dict:
     manifest = read_json(directory / "RELEASE_MANIFEST.json")
     if manifest["format"] != "birdsvision-soyol-private-release-bundle-v1":
         raise ValueError("invalid release manifest format")
+    expected_files = set(manifest["files"]) | {"RELEASE_MANIFEST.json"}
+    actual_files = {path.name for path in directory.iterdir() if path.is_file()}
+    if actual_files != expected_files or any(path.is_dir() for path in directory.iterdir()):
+        raise ValueError("release bundle contains missing or extra files")
     for filename, expected_digest in manifest["files"].items():
         if Path(filename).name != filename or digest(directory / filename) != expected_digest:
             raise ValueError(f"release file changed: {filename}")

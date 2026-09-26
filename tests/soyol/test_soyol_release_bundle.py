@@ -67,6 +67,10 @@ def test_private_bundle_binds_inputs_and_removes_local_paths(tmp_path, monkeypat
     assert manifest["final_test_completed"] is False
     assert "weight_path" not in (output / "VALIDATION.json").read_text(encoding="utf-8")
     assert "D:\\private" not in (output / "VALIDATION.json").read_text(encoding="utf-8")
+    (output / "extra.jpg").write_bytes(b"unexpected image")
+    with pytest.raises(ValueError, match="missing or extra"):
+        release.verify_bundle(output)
+    (output / "extra.jpg").unlink()
     (output / "best.pt").write_bytes(b"altered")
     with pytest.raises(ValueError, match="release file changed"):
         release.verify_bundle(output)
