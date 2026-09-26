@@ -1,6 +1,6 @@
 # BirdsVision 分类器训练
 
-> 本仓库目前尚未对公众开放，计划公开 ConvNeXt 分类器训练源码。SOYOL 定位器在独立的 [SOYOL 仓库](https://github.com/Lee0721-1/birdsvision-soyol-locator)；分类服务源码在[后端仓库](https://github.com/Lee0721-1/birdsvision-inference-server)。旧提交历史仍有迁移前的 SOYOL 文件，公开前须检查完整历史。
+> 本仓库公开 ConvNeXt 分类器训练源码。SOYOL 定位器在独立的 [SOYOL 仓库](https://github.com/Lee0721-1/birdsvision-soyol-locator)；分类服务源码在[后端仓库](https://github.com/Lee0721-1/birdsvision-inference-server)。旧提交历史仍有迁移前的 SOYOL 文件，阅读历史版本时须区分拆分前后的项目内容。
 
 本仓库包含 BirdsVision 双视图 ConvNeXt-Tiny 分类训练代码，支持低学习率微调、受控融合实验、参数扫描、检查点恢复和合成数据测试。分类器源码、类表和正式权重均不属于 SOYOL 发布内容。
 
@@ -48,4 +48,4 @@ python -m convnext.dual_view_classifier_finetune --config /path/to/private_finet
 
 ## 许可证
 
-本仓库源文件采用 [GNU Affero General Public License v3.0 only](LICENSE)；中文说明见 [LICENSE.zh-CN.md](LICENSE.zh-CN.md)。分类器训练源码计划公开，正式数据、类表和分类器权重不随仓库发布。本仓库不作为 SOYOL 定位器源码与权重的发布入口；数据和模型权重不因本仓库源码许可证自动获得授权。
+本仓库源文件采用 [GNU Affero General Public License v3.0 only](LICENSE)；中文说明见 [LICENSE.zh-CN.md](LICENSE.zh-CN.md)。正式数据、类表和分类器权重不随仓库发布。本仓库不作为 SOYOL 定位器源码与权重的发布入口；数据和模型权重不因本仓库源码许可证自动获得授权。
