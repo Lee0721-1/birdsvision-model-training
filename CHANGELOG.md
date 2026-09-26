@@ -2,9 +2,7 @@
 
 ## Unreleased
 
-- 添加 SOYOL A 层 Detect 的外部数据合同验证、训练入口和 one-to-many NMS validation 入口；不包含数据或权重。
-- 添加模型卡准备记录和逐图署名表生成器；实际署名表需另行人工复核后发布。
-- 添加仅接收 A 层人工最终框的 Detect train/validation 导出器及合成测试。
+- SOYOL 训练工具、模型卡、署名审阅表及测试迁往独立的 `birdsvision-soyol-locator` 仓库。本仓库当前工作树只保留分类器训练；迁移前文件仍在 Git 历史中，本仓库继续保持私密。
 
 ## 0.1.0 - 2026-09-10
 
