@@ -1,8 +1,10 @@
 # BirdsVision Model Training
 
+> This is a private historical workspace containing source for both the classifier and the locator. Do not make the entire repository public. The classifier source and weights stay in the private project; SOYOL AGPL release materials are being assembled as a separate locator project.
+
 SOYOL stands for Student YOLO. The internal teacher model is called TYLO (Teacher YOLO); it remains closed source and is mainly used to compare the student's results.
 
-Open-source preparation code for the BirdsVision shared dual-view ConvNeXt-Tiny classifier. Images, review ledgers, class tables, frozen evaluation data, checkpoints, and trained weights are intentionally excluded.
+Historical preparation code for the BirdsVision shared dual-view ConvNeXt-Tiny classifier and SOYOL locator. The mixed repository remains private. Images, review ledgers, class tables, frozen evaluation data, checkpoints, and trained weights are excluded.
 
 The [BirdsVision website](https://www.birdsvision.com.cn/) introduces the app, model development progress, privacy information, and download options. This repository provides training source code; neither the website nor this repository distributes training images or production model weights.
 
