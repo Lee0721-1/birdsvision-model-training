@@ -71,6 +71,21 @@ python -m soyol.soyol_validate --dataset /private/soyol-data \
 
 [SOYOL 模型卡准备记录](SOYOL_MODEL_CARD.md)列出当前训练事实和未完成事项。`python -m soyol.soyol_attribution --selection /private/selection.jsonl --output /private/attribution.csv` 可在仓库外生成逐图署名表供人工复核；不要把未经复核的表直接发布。
 
+## 私密预发布包
+
+`soyol.soyol_release_bundle` 在仓库工作区干净时，核对所选权重、逐图署名和 NMS 验证报告与训练记录一致，再把权重、署名、模型卡、源代码许可证、第三方说明和去除本机路径的验证摘要放进**仓库外**的新目录。生成的清单绑定当时的 Git 提交和每个文件；工具拒绝覆盖已有目录。此包只供内部审阅，脚本不会上传文件或改变仓库可见性。
+
+```bash
+python -m soyol.soyol_release_bundle \
+  --record /private/training_validation_record.json \
+  --weight /private/run/weights/best.pt \
+  --attribution /private/photo_attribution.csv \
+  --validation /private/run/nms_validation.json \
+  --output /private/release-staging/soyol-a-documented
+```
+
+私密预发布包不代表取得平台许可、完成独立 `final_test` 或满足公网服务的 AGPL 对应源码义务。公开前仍需单独核对实际部署和许可结论。
+
 ## 许可证
 
 源代码使用 [GNU Affero General Public License v3.0 only](LICENSE)。中文说明见 [LICENSE.zh-CN.md](LICENSE.zh-CN.md)。数据和模型权重不属于本仓库发布内容，也不因源代码许可证自动获得授权。
