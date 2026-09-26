@@ -1,6 +1,6 @@
 # BirdsVision Classifier Training
 
-This is the private ConvNeXt classifier training project. SOYOL localization has moved to the independent [SOYOL repository](https://github.com/Lee0721-1/birdsvision-soyol-locator). The Git history still contains SOYOL files from before the split, so do not make this repository public.
+This repository is not yet publicly accessible. The plan is to publish its ConvNeXt classifier training source. SOYOL localization is in the independent [SOYOL repository](https://github.com/Lee0721-1/birdsvision-soyol-locator), and the classifier API source is in the [inference-server repository](https://github.com/Lee0721-1/birdsvision-inference-server). The Git history still contains SOYOL files from before the split and needs review before publication.
 
 The classifier and locator are maintained as separate projects. Classifier source, labels, and production weights are outside the SOYOL release.
 
@@ -12,4 +12,4 @@ The `convnext/` directory contains classifier training code and examples; `tests
 
 See [README.md](README.md) for setup, smoke tests, and the data-contract boundary. Source code is licensed under AGPL-3.0-only.
 
-Existing source files retain their AGPL-3.0-only notices. This private repository is not the source release for SOYOL.
+Source files retain their AGPL-3.0-only notices. Classifier weights, labels, and training data are excluded from the planned source publication. This repository is not the source release for SOYOL.
